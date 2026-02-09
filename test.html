@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #e63946;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 12px 28px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #yes {
+      background: #e63946;
+      color: white;
+    }
+
+    #no {
+      background: #adb5bd;
+      color: black;
+      position: fixed;
+      left: 50%;
+      top: 70%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <button id="yes">YES</button>
+  </div>
+
+  <button id="no">NO</button>
+
+  <script>
+    const noBtn = document.getElementById('no');
+
+    function moveButton() {
+      const padding = 20;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+
+    // Desktop
+    noBtn.addEventListener('mouseenter', moveButton);
+
+    // Mobile
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveButton();
+    });
+
+    document.getElementById('yes').onclick = () => {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          font-family:'Segoe UI',sans-serif;
+          background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+          text-align:center;">
+          <h1 style="color:#e63946;font-size:2.5rem;">
+            YAY!!! 💘💘💘<br>
+            Best Valentine ever 😘
+          </h1>
+        </div>`;
+    };
+  </script>
+
+</body>
+</html>
